@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Http\Requests\StoreBookPostRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -22,7 +23,7 @@ class BookController extends Controller
         $this->middleware('auth');
     }
 
-    public function save()
+    public function save(StoreBookPostRequest $request)
     {
         $bookId = Input::get('book_id');
         if ($bookId) {

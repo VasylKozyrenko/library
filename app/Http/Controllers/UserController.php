@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\User;
+use App\Http\Requests\StoreUserPostRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -48,7 +49,7 @@ class UserController extends Controller
         return redirect('books');
     }
 
-    public function save()
+    public function save(StoreUserPostRequest $request)
     {
         $userId = Input::get('user_id');
         if ($userId) {
