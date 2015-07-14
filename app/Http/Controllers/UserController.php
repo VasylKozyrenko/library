@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Vasyl
- * Date: 12.07.15
- * Time: 20:41
- * To change this template use File | Settings | File Templates.
- */
+
 namespace App\Http\Controllers;
 
 use App\Book;
@@ -24,6 +18,9 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function getList()
     {
         $users = User::paginate(10);
@@ -31,6 +28,9 @@ class UserController extends Controller
         return view('users', ['users' => $users]);
     }
 
+    /**
+     * @return Redirect
+     */
     public function takeBook()
     {
         $bookId = Input::get('book_id');
@@ -40,6 +40,9 @@ class UserController extends Controller
         return redirect('books');
     }
 
+    /**
+     * @return Redirect
+     */
     public function returnBook()
     {
         $bookId = Input::get('book_id');
@@ -49,6 +52,10 @@ class UserController extends Controller
         return redirect('books');
     }
 
+    /**
+     * @param StoreUserPostRequest $request
+     * @return mixed
+     */
     public function save(StoreUserPostRequest $request)
     {
         $userId = Input::get('user_id');
@@ -68,6 +75,9 @@ class UserController extends Controller
             ->with('message', sprintf('User "%s" saved', $user->first_name));
     }
 
+    /**
+     * @return mixed
+     */
     public function delete()
     {
         $userId = Input::get('user_id');
@@ -77,11 +87,17 @@ class UserController extends Controller
             ->with('message', sprintf('User "%s" deleted', $user->first_name));
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('user/create');
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function edit()
     {
         $userId = Input::get('user_id');

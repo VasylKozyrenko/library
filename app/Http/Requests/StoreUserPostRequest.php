@@ -27,8 +27,7 @@ class StoreUserPostRequest extends Request
             'first_name' => 'required|min:3|max:80|alpha',
             'last_name' => 'required|min:3|max:80|alpha',
             'email' => 'required|email|unique:users',
-            'password' => 'required|alphanum|between:4,8|confirmed',
-            'password_confirmation' => 'required|alphanum|between:4,8',
+            'password' => 'required|alphanum|between:4,8|confirmed'
         ];
     }
 }

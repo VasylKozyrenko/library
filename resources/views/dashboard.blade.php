@@ -1,4 +1,3 @@
-<!-- -->
 @extends('master')
 
 @section('main')

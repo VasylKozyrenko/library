@@ -1,7 +1,7 @@
-<!-- -->
 @extends('master')
 
 @section('main')
+
     <div class="col-md-8 col-md-offset-2 form-content">
         <h3 class="heading">Edit User {{ $user->first_name }}</h3>
         @foreach($errors->all() as $error)

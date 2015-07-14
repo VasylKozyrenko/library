@@ -13,6 +13,9 @@ class Book extends Model
      */
     protected $fillable = ['title', 'author', 'year', 'genre'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User');

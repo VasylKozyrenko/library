@@ -19,5 +19,4 @@ class DashBoardController extends Controller
     {
         return view('dashboard');
     }
-
 }

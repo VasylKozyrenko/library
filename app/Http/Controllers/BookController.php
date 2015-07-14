@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Vasyl
- * Date: 12.07.15
- * Time: 20:41
- * To change this template use File | Settings | File Templates.
- */
+
 namespace App\Http\Controllers;
 
 use App\Book;
@@ -23,6 +17,10 @@ class BookController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @param StoreBookPostRequest $request
+     * @return mixed
+     */
     public function save(StoreBookPostRequest $request)
     {
         $bookId = Input::get('book_id');
@@ -37,11 +35,13 @@ class BookController extends Controller
                 ->with('message', 'Something wrong happened while saving your model')
                 ->withInput();
         }
-
         return Redirect::route('books')
             ->with('message', sprintf('Book "%s" saved', $book->title));
     }
 
+    /**
+     * @return mixed
+     */
     public function delete()
     {
         $bookId = Input::get('book_id');
@@ -51,11 +51,17 @@ class BookController extends Controller
             ->with('message', sprintf('Book "%s" deleted', $book->title));
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('book/create');
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function edit()
     {
         $bookId = Input::get('book_id');
@@ -63,6 +69,9 @@ class BookController extends Controller
         return view('book/edit', ['book' => $book]);
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function getList()
     {
         $currentUser = \Auth::user();
