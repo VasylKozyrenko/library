@@ -1,27 +1,33 @@
-## Laravel PHP Framework
+#"Library" homework for Binary Studio Academy
+Created by Vasyl Kozyrenko vasylkozyrenko@gmail.com
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+#Task:
+Вам необходимо создать CRUD систему учета книг в библиотеке оперируя следующей информацией о книгах и пользователях:
+book (title, author, year, genre)
+user (first_name, last_name, email)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Система должна позволять выполнять следующие действия:
+1. Добавлять/удалять/изменять определённую книгу
+2. (Просматривать список всех книг (по 10 на странице - механизм pagination)
+3. Добавлять/удалять/изменять пользователей
+4. Просматривать пользователей (по 10 на странице - механизм pagination)
+5. Отображать какая книга(книги) находится в данный момент у какого пользователя.
+6. Реализовать назначение книги определенному пользователю
+7. Реализовать возврат книги обратно в библиотеку (удаление принадлежности пользователю)
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Формы добавления/изменения пользователей и книг должны быть провалидированы по следующим правилам:
+1. Все поля обязательные
+2. year должен быть числовым
+3. email должен быть уникальным и в соответствии с форматом
+4. author, first_name, last_name, genre, должны содержать только буквы
 
-## Official Documentation
+Требования к организации проекта:
+1. Описание сущностей и связей должно быть выполнено при помощи механизма миграций.
+2. Начальные списки книг и пользователей должны быть сгенерированными при помощи соответствующих сидов
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+К существующей системе библиотеки добавить возможность аутентификации при помощи email и password. А также аутентификацию при помощи социальной сети Facebook.
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Требования к выполнению
+- По умолчанию просмотр страниц библиотеки должен быть недоступен
+- После аутентификации пользователя должен отображаться только список тех книг, которые ему назначены.
+Для того, чтобы работала аутентификация через facebook необходимо создать приложение на самом сайте и использовать параметры(ключи), которые он предоставляет, внутри вашего Laravel приложения
