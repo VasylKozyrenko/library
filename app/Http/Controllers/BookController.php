@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Jobs\MailSender;
 use App\User;
 use App\Http\Requests\StoreBookPostRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use App\Jobs\SendReminderEmail;
 
 class BookController extends Controller
 {
@@ -19,11 +19,20 @@ class BookController extends Controller
         $this->middleware('auth');
     }
 
-    public function sendReminderEmail(Book $book)
+    protected function notifyUsers(Book $book)
     {
         $users = User::all();
+        $url = route('books');
         foreach ($users as $user) {
-            $this->dispatch(new SendReminderEmail($user, $book));
+            $this->dispatch(
+                new MailSender(
+                    $user,
+                    $book,
+                    'A new book is appeared!',
+                    'emails.new_book',
+                    $url
+                )
+            );
         }
     }
 
@@ -39,7 +48,7 @@ class BookController extends Controller
             $book->update(Input::all());
         } else {
             $book = Book::create(Input::all());
-            $this->sendReminderEmail($book);
+            $this->notifyUsers($book);
         }
         if (!$book) {
             return Redirect::back()

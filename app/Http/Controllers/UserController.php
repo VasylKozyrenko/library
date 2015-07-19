@@ -36,6 +36,7 @@ class UserController extends Controller
         $bookId = Input::get('book_id');
         $book = Book::find($bookId);
         $book->user_id = \Auth::user()->id;
+        $book->taken = date("Y-m-d H:i:s");
         $book->save();
         return redirect('books');
     }
@@ -48,6 +49,7 @@ class UserController extends Controller
         $bookId = Input::get('book_id');
         $book = Book::find($bookId);
         $book->user_id = null;
+        $book->taken = null;
         $book->save();
         return redirect('books');
     }
