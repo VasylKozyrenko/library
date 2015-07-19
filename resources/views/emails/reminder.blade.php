@@ -1,0 +1,1 @@
+Hello {{ $user->first_name }}, we have new book for you {{ $book->title  }}!
